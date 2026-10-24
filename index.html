@@ -1,0 +1,3793 @@
+html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070b1d">
+<meta name="description" content="NEXUS: proyecto educativo de una casa inteligente .">
+<title>NEXUS | Casa Inteligente</title>
+
+<style>
+:root {
+    --fondo: #070b1d;
+    --panel: #101a35;
+    --cyan: #42f5ff;
+    --morado: #a278ff;
+    --rosa: #ff4fd8;
+    --texto: #edf4ff;
+    --gris: #aab9d4;
+    --borde: rgba(66,245,255,.22);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background:
+        radial-gradient(circle at 15% 10%, rgba(66,245,255,.08), transparent 28%),
+        radial-gradient(circle at 85% 35%, rgba(162,120,255,.10), transparent 30%),
+        var(--fondo);
+    color: var(--texto);
+    font-family: "Segoe UI", Arial, sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: .15;
+    background-image:
+        linear-gradient(rgba(66,245,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(66,245,255,.08) 1px, transparent 1px);
+    background-size: 45px 45px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+.container {
+    width: min(1160px, 91%);
+    margin: auto;
+}
+
+section {
+    padding: 90px 0;
+    scroll-margin-top: 85px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-title h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.2;
+    margin-bottom: 14px;
+}
+
+.section-title h2 span {
+    color: var(--cyan);
+    text-shadow: 0 0 18px rgba(66,245,255,.35);
+}
+
+.section-title p {
+    color: var(--gris);
+    max-width: 720px;
+    margin: auto;
+}
+
+.line {
+    width: 90px;
+    height: 3px;
+    margin: 18px auto 0;
+    background: linear-gradient(90deg, var(--cyan), var(--morado), var(--rosa));
+    border-radius: 10px;
+}
+
+/* NAVEGACIÓN */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(7,11,29,.90);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--borde);
+}
+
+.navbar {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+}
+
+.logo {
+    font-size: 1.65rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: var(--cyan);
+    text-shadow: 0 0 18px rgba(66,245,255,.4);
+}
+
+.logo small {
+    display: block;
+    color: var(--gris);
+    font-size: .62rem;
+    letter-spacing: 3px;
+    line-height: 1;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 18px;
+}
+
+.nav-links a {
+    color: var(--gris);
+    font-size: .86rem;
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: var(--cyan);
+}
+
+.menu-btn {
+    display: none;
+    background: transparent;
+    color: var(--cyan);
+    border: 1px solid var(--borde);
+    padding: 7px 12px;
+    border-radius: 8px;
+}
+
+/* INICIO */
+
+.hero {
+    min-height: 680px;
+    display: flex;
+    align-items: center;
+    padding: 75px 0 95px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    align-items: center;
+    gap: 40px;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 13px;
+    border: 1px solid var(--borde);
+    border-radius: 30px;
+    background: rgba(66,245,255,.06);
+    color: var(--cyan);
+    font-size: .75rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 23px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--cyan);
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 7vw, 5.7rem);
+    line-height: .98;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+}
+
+.hero h1 span {
+    display: block;
+    color: var(--cyan);
+    text-shadow: 0 0 28px rgba(66,245,255,.28);
+}
+
+.hero-text {
+    color: var(--gris);
+    font-size: 1.04rem;
+    max-width: 650px;
+    margin-bottom: 18px;
+}
+
+.hero-text strong {
+    color: var(--texto);
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 28px;
+}
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 21px;
+    border-radius: 9px;
+    font-weight: 700;
+    font-size: .9rem;
+    transition: .3s;
+    border: 1px solid var(--cyan);
+}
+
+.btn-primary {
+    color: var(--fondo);
+    background: var(--cyan);
+    box-shadow: 0 0 22px rgba(66,245,255,.17);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(66,245,255,.35);
+}
+
+.btn-outline {
+    color: var(--cyan);
+    background: transparent;
+}
+
+.btn-outline:hover {
+    background: rgba(66,245,255,.09);
+    transform: translateY(-3px);
+}
+
+/* CASA FUTURISTA */
+
+.hero-art {
+    min-height: 440px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    isolation: isolate;
+}
+
+.orbit {
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    border: 1px solid rgba(66,245,255,.2);
+    border-radius: 50%;
+    animation: rotate 24s linear infinite;
+}
+
+.orbit::before,
+.orbit::after {
+    content: "";
+    position: absolute;
+    inset: 28px;
+    border: 1px dashed rgba(162,120,255,.3);
+    border-radius: 50%;
+}
+
+.orbit::after {
+    inset: 65px;
+    border-color: rgba(66,245,255,.23);
+}
+
+@keyframes rotate {
+    to { transform: rotate(360deg); }
+}
+
+.house {
+    width: 280px;
+    height: 245px;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 0 24px rgba(66,245,255,.22));
+}
+
+.house-roof {
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    width: 240px;
+    height: 125px;
+    border-top: 4px solid var(--cyan);
+    border-left: 4px solid var(--cyan);
+    transform: rotate(45deg) scale(.72);
+    border-radius: 8px 0 0 0;
+    box-shadow: -5px -5px 20px rgba(66,245,255,.12);
+}
+
+.house-body {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    width: 240px;
+    height: 160px;
+    border: 2px solid var(--cyan);
+    background: linear-gradient(145deg, rgba(16,36,67,.96), rgba(7,11,29,.95));
+    box-shadow: inset 0 0 30px rgba(66,245,255,.1);
+}
+
+.house-window {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border: 2px solid var(--cyan);
+    background: rgba(66,245,255,.16);
+    box-shadow: inset 0 0 15px rgba(66,245,255,.4), 0 0 12px rgba(66,245,255,.2);
+}
+
+.window-one {
+    top: 25px;
+    left: 22px;
+}
+
+.window-two {
+    top: 25px;
+    right: 22px;
+}
+
+.house-door {
+    position: absolute;
+    width: 48px;
+    height: 85px;
+    left: 94px;
+    bottom: 0;
+    border: 2px solid var(--morado);
+    border-bottom: none;
+    background: rgba(162,120,255,.18);
+}
+
+.house-door::after {
+    content: "";
+    position: absolute;
+    right: 7px;
+    top: 43px;
+    width: 5px;
+    height: 5px;
+    background: var(--cyan);
+    border-radius: 50%;
+}
+
+.house-base {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 280px;
+    height: 3px;
+    background: var(--cyan);
+    box-shadow: 0 0 20px var(--cyan);
+}
+
+.art-label {
+    position: absolute;
+    z-index: 4;
+    padding: 9px 13px;
+    background: rgba(16,26,53,.92);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    color: var(--cyan);
+    font-size: .73rem;
+    box-shadow: 0 0 20px rgba(66,245,255,.08);
+}
+
+.label-top {
+    top: 40px;
+    right: 0;
+}
+
+.label-bottom {
+    bottom: 30px;
+    left: 0;
+    color: var(--morado);
+    border-color: rgba(162,120,255,.4);
+}
+
+/* ANDROIDE */
+
+.android {
+    position: absolute;
+    z-index: 5;
+    right: 2%;
+    bottom: 3px;
+    width: 110px;
+    height: 220px;
+    animation: float 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 14px rgba(66,245,255,.2));
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.android-head {
+    position: absolute;
+    top: 0;
+    left: 18px;
+    width: 75px;
+    height: 58px;
+    border: 2px solid var(--cyan);
+    border-radius: 22px 22px 15px 15px;
+    background: linear-gradient(145deg, #183456, #0a1128);
+    box-shadow: inset 0 0 15px rgba(66,245,255,.16), 0 0 15px rgba(66,245,255,.16);
+}
+
+.android-head::before,
+.android-head::after {
+    content: "";
+    position: absolute;
+    top: -14px;
+    width: 2px;
+    height: 15px;
+    background: var(--cyan);
+}
+
+.android-head::before {
+    left: 17px;
+    transform: rotate(-25deg);
+}
+
+.android-head::after {
+    right: 17px;
+    transform: rotate(25deg);
+}
+
+.android-eye {
+    position: absolute;
+    top: 24px;
+    width: 10px;
+    height: 5px;
+    background: var(--cyan);
+    border-radius: 5px;
+    box-shadow: 0 0 9px var(--cyan);
+}
+
+.android-eye.left { left: 15px; }
+.android-eye.right { right: 15px; }
+
+.android-neck {
+    position: absolute;
+    top: 58px;
+    left: 49px;
+    width: 15px;
+    height: 10px;
+    background: var(--morado);
+}
+
+.android-body {
+    position: absolute;
+    top: 68px;
+    left: 22px;
+    width: 68px;
+    height: 77px;
+    border: 2px solid var(--cyan);
+    border-radius: 13px;
+    background: linear-gradient(145deg, #1a3154, #0a1128);
+}
+
+.android-core {
+    position: absolute;
+    top: 19px;
+    left: 22px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--morado);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--morado), inset 0 0 8px var(--morado);
+}
+
+.android-arm {
+    position: absolute;
+    top: 75px;
+    width: 12px;
+    height: 57px;
+    border: 2px solid var(--cyan);
+    border-radius: 8px;
+    background: #142744;
+}
+
+.android-arm.left { left: 8px; transform: rotate(9deg); }
+.android-arm.right { right: 8px; transform: rotate(-9deg); }
+
+.android-leg {
+    position: absolute;
+    top: 142px;
+    width: 17px;
+    height: 57px;
+    border: 2px solid var(--cyan);
+    border-radius: 5px;
+    background: #142744;
+}
+
+.android-leg.left { left: 34px; }
+.android-leg.right { right: 28px; }
+
+.android-foot {
+    position: absolute;
+    bottom: 9px;
+    width: 24px;
+    height: 8px;
+    background: var(--morado);
+    border-radius: 5px;
+}
+
+.android-foot.left { left: 25px; }
+.android-foot.right { right: 19px; }
+
+/* TARJETAS */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: linear-gradient(145deg, rgba(17,26,54,.96), rgba(12,19,40,.96));
+    border: 1px solid var(--borde);
+    padding: 25px;
+    border-radius: 16px;
+    transition: .3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--cyan), var(--morado), transparent);
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(66,245,255,.55);
+    box-shadow: 0 12px 35px rgba(0,0,0,.2), 0 0 22px rgba(66,245,255,.06);
+}
+
+.card h3 {
+    color: var(--cyan);
+    font-size: 1.08rem;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: var(--gris);
+    font-size: .94rem;
+}
+
+.card ul {
+    color: var(--gris);
+    padding-left: 19px;
+    margin-top: 10px;
+}
+
+.card li {
+    margin: 5px 0;
+}
+
+.number {
+    display: inline-flex;
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 17px;
+    border: 1px solid var(--cyan);
+    border-radius: 12px;
+    color: var(--cyan);
+    background: rgba(66,245,255,.08);
+    font-weight: 800;
+}
+
+/* DESCRIPCIÓN DEL PROYECTO */
+
+.project-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    align-items: stretch;
+}
+
+.intro-panel {
+    background: rgba(16,26,53,.78);
+    border: 1px solid var(--borde);
+    border-radius: 18px;
+    padding: 30px;
+}
+
+.intro-panel h3 {
+    color: var(--cyan);
+    margin-bottom: 15px;
+}
+
+.intro-panel p {
+    color: var(--gris);
+    margin-bottom: 13px;
+}
+
+.feature-list {
+    display: grid;
+    gap: 13px;
+    margin-top: 20px;
+}
+
+.feature {
+    padding: 13px 15px;
+    background: rgba(66,245,255,.045);
+    border-left: 3px solid var(--cyan);
+    border-radius: 0 8px 8px 0;
+}
+
+.feature strong {
+    color: var(--texto);
+    display: block;
+}
+
+.feature span {
+    color: var(--gris);
+    font-size: .9rem;
+}
+
+/* ETAPAS */
+
+.stages {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.stage {
+    display: grid;
+    grid-template-columns: 58px 1fr;
+    gap: 17px;
+    background: rgba(16,26,53,.82);
+    border: 1px solid var(--borde);
+    padding: 25px;
+    border-radius: 15px;
+    transition: .3s;
+}
+
+.stage:hover {
+    border-color: var(--morado);
+    transform: translateY(-4px);
+}
+
+.stage-number {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--morado);
+    color: var(--morado);
+    border-radius: 14px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    background: rgba(162,120,255,.08);
+}
+
+.stage h3 {
+    color: var(--cyan);
+    margin-bottom: 9px;
+    font-size: 1.05rem;
+}
+
+.stage p {
+    color: var(--gris);
+    font-size: .92rem;
+}
+
+.stage strong {
+    color: var(--texto);
+}
+
+/* COMPONENTES */
+
+.component-card {
+    min-height: 195px;
+}
+
+/* GITHUB */
+
+.lab-panel {
+    background: linear-gradient(135deg, rgba(66,245,255,.07), rgba(162,120,255,.07));
+    border: 1px solid var(--borde);
+    border-radius: 20px;
+    padding: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.lab-panel h3 {
+    font-size: 1.5rem;
+    color: var(--cyan);
+    margin-bottom: 10px;
+}
+
+.lab-panel p {
+    color: var(--gris);
+}
+
+.github-link {
+    display: inline-block;
+    color: var(--cyan);
+    border: 1px solid var(--cyan);
+    border-radius: 9px;
+    padding: 12px 20px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+    transition: .3s;
+}
+
+.github-link:hover {
+    background: rgba(66,245,255,.1);
+    box-shadow: 0 0 22px rgba(66,245,255,.15);
+    transform: translateY(-3px);
+}
+
+/* GALERÍA */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.gallery-item {
+    min-height: 210px;
+    overflow: hidden;
+    border: 1px solid var(--borde);
+    border-radius: 15px;
+    background: var(--panel);
+    position: relative;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    min-height: 210px;
+    object-fit: cover;
+    display: block;
+    transition: .5s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 28px 15px 14px;
+    background: linear-gradient(transparent, rgba(7,11,29,.95));
+    color: var(--texto);
+    font-weight: 700;
+}
+
+/* PDF */
+
+.pdf-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.pdf-card {
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    background: rgba(16,26,53,.85);
+    padding: 23px 14px;
+    text-align: center;
+    transition: .3s;
+}
+
+.pdf-card:hover {
+    border-color: var(--cyan);
+    transform: translateY(-5px);
+}
+
+.pdf-icon {
+    width: 52px;
+    height: 60px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--rosa);
+    border-radius: 8px;
+    color: var(--rosa);
+    font-weight: 900;
+    font-size: .82rem;
+    position: relative;
+    background: rgba(255,79,216,.06);
+}
+
+.pdf-icon::after {
+    content: "";
+    position: absolute;
+    bottom: 10px;
+    left: 8px;
+    right: 8px;
+    height: 2px;
+    background: var(--rosa);
+    box-shadow: 0 6px 0 rgba(255,79,216,.55);
+}
+
+.pdf-card h3 {
+    font-size: .91rem;
+    margin-bottom: 8px;
+}
+
+.pdf-card p {
+    color: var(--gris);
+    font-size: .78rem;
+    margin-bottom: 15px;
+}
+
+.pdf-link {
+    display: inline-block;
+    font-size: .82rem;
+    color: var(--cyan);
+    border-bottom: 1px solid var(--cyan);
+}
+
+/* VIDEO */
+
+.video-container {
+    max-width: 850px;
+    margin: auto;
+    padding: 12px;
+    background: linear-gradient(135deg, var(--cyan), var(--morado), var(--rosa));
+    border-radius: 18px;
+}
+
+.video-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #050918;
+    border-radius: 11px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.video-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.video-placeholder h3 {
+    color: var(--cyan);
+    margin-bottom: 10px;
+}
+
+.video-placeholder p {
+    color: var(--gris);
+}
+
+/* REDES SOCIALES */
+
+.socials {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-width: 145px;
+    padding: 13px 18px;
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    color: var(--texto);
+    background: rgba(16,26,53,.8);
+    transition: .3s;
+}
+
+.social-link:hover {
+    transform: translateY(-4px);
+    border-color: var(--cyan);
+    color: var(--cyan);
+}
+
+.social-link svg {
+    width: 23px;
+    height: 23px;
+    flex-shrink: 0;
+    fill: currentColor;
+}
+
+.social-link span {
+    font-size: .9rem;
+    font-weight: 700;
+}
+
+/* INTEGRANTES */
+
+.creators {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.creator {
+    padding: 18px;
+    text-align: center;
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    background: rgba(16,26,53,.8);
+    color: var(--texto);
+    transition: .3s;
+}
+
+.creator:hover {
+    border-color: var(--cyan);
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px rgba(66,245,255,.07);
+}
+
+/* PIE DE PÁGINA */
+
+footer {
+    border-top: 1px solid var(--borde);
+    padding: 28px 0;
+    text-align: center;
+    color: var(--gris);
+    font-size: .86rem;
+}
+
+footer span {
+    color: var(--cyan);
+}
+
+/* VENTANA PDF */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(2,5,16,.94);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    width: min(1000px, 100%);
+    height: min(85vh, 800px);
+    background: var(--panel);
+    border: 1px solid var(--cyan);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--borde);
+}
+
+.modal-header h3 {
+    color: var(--cyan);
+    font-size: 1rem;
+}
+
+.modal-close {
+    color: var(--cyan);
+    background: transparent;
+    border: 1px solid var(--borde);
+    border-radius: 7px;
+    padding: 5px 12px;
+}
+
+.modal iframe {
+    flex: 1;
+    width: 100%;
+    border: 0;
+    background: white;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 950px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-art {
+        min-height: 420px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pdf-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .project-intro {
+        grid-template-columns: 1fr;
+    }
+
+    .lab-panel {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 700px) {
+    .navbar {
+        flex-wrap: wrap;
+        padding: 14px 0;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding-bottom: 8px;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 10px 5px;
+        border-bottom: 1px solid rgba(66,245,255,.08);
+    }
+
+    section {
+        padding: 65px 0;
+    }
+
+    .hero {
+        padding: 55px 0 70px;
+    }
+
+    .hero h1 {
+        letter-spacing: -1px;
+    }
+
+    .hero-art {
+        transform: scale(.88);
+        margin: -15px -20px;
+    }
+
+    .grid,
+    .stages,
+    .gallery,
+    .creators {
+        grid-template-columns: 1fr;
+    }
+
+    .pdf-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stage {
+        grid-template-columns: 48px 1fr;
+        padding: 19px;
+        gap: 13px;
+    }
+
+    .stage-number {
+        width: 44px;
+        height: 44px;
+    }
+
+    .intro-panel,
+    .lab-panel {
+        padding: 23px;
+    }
+
+    .github-link {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 390px) {
+    .pdf-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-art {
+        transform: scale(.75);
+        margin: -40px -35px;
+    }
+
+.stage-image {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    display: block;
+    margin-top: 15px;
+    border-radius: 12px;
+    border: 1px solid #42f5ff;
+    box-shadow: 0 0 15px rgba(66, 245, 255, 0.2);
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVEGACIÓN -->
+<header>
+    <div class="container navbar">
+
+        <a href="#inicio" class="logo">
+            NEXUS
+            <small>SMART HOME SYSTEM</small>
+        </a>
+
+        <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">
+            MENÚ
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#inicio">Inicio</a>
+            <a href="#proyecto">Proyecto</a>
+            <a href="#etapas">Etapas</a>
+            <a href="#componentes">Componentes</a>
+            <a href="#laboratorio">GitHub</a>
+            <a href="#galeria">Galería</a>
+            <a href="#documentos">PDF</a>
+            <a href="#video">Video</a>
+            <a href="#contacto">Redes sociales</a>
+            <a href="#integrantes">Integrantes</a>
+        </nav>
+
+    </div>
+</header>
+
+<main>
+
+<!-- PÁGINA PRINCIPAL -->
+<section class="hero" id="inicio">
+    <div class="container hero-grid">
+
+        <div class="hero-content">
+
+            <div class="status">
+                <span class="status-dot"></span>
+                PROYECTO DE ROBÓTICA
+            </div>
+
+            <h1>
+                CASA
+                <span>INTELIGENTE</span>
+            </h1>
+
+            <p class="hero-text">
+                <strong>Una casa controlada por una red web</strong> es un
+                proyecto tecnológico que integra electrónica, programación
+                y robótica para crear un hogar capaz de responder a diferentes
+                condiciones del entorno.
+            </p>
+
+            <p class="hero-text">
+                Mediante una tarjeta Arduino, sensores y dispositivos
+                electrónicos, se pueden detectar movimientos, medir
+                condiciones ambientales y activar luces u otros elementos.
+                Su finalidad es demostrar cómo la tecnología puede facilitar
+                actividades cotidianas y ayudar a crear espacios más cómodos,
+                prácticos y eficientes.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#proyecto" class="btn btn-primary">
+                    Conocer el proyecto
+                </a>
+
+                <a href="#etapas" class="btn btn-outline">
+                    Ver las etapas
+                </a>
+            </div>
+
+        </div>
+
+        <!-- CASA Y ANDROIDE -->
+        <div class="hero-art">
+
+            <div class="orbit"></div>
+
+            <div class="house">
+                <div class="house-roof"></div>
+
+                <div class="house-body">
+                    <div class="house-window window-one"></div>
+                    <div class="house-window window-two"></div>
+                    <div class="house-door"></div>
+                </div>
+
+                <div class="house-base"></div>
+            </div>
+
+            <div class="art-label label-top">
+                SISTEMA DOMÓTICO
+            </div>
+
+            <div class="art-label label-bottom">
+                CONTROL ELECTRÓNICO
+            </div>
+
+            <div class="android">
+                <div class="android-head">
+                    <div class="android-eye left"></div>
+                    <div class="android-eye right"></div>
+                </div>
+
+                <div class="android-neck"></div>
+
+                <div class="android-body">
+                    <div class="android-core"></div>
+                </div>
+
+                <div class="android-arm left"></div>
+                <div class="android-arm right"></div>
+                <div class="android-leg left"></div>
+                <div class="android-leg right"></div>
+                <div class="android-foot left"></div>
+                <div class="android-foot right"></div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- INFORMACIÓN DEL PROYECTO -->
+<section id="proyecto">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>¿En qué consiste <span>el proyecto?</span></h2>
+            <p>
+                Una propuesta educativa para conocer cómo trabajan juntos
+                los circuitos electrónicos, los sensores y la programación.
+            </p>
+            <div class="line"></div>
+        </div>
+
+        <div class="project-intro">
+
+            <div class="intro-panel">
+                <h3>Descripción general</h3>
+
+                <p>
+                    NEXUS es una maqueta de casa inteligente diseñada para
+                    demostrar cómo se pueden automatizar algunas funciones
+                    de una vivienda utilizando componentes electrónicos.
+                </p>
+
+                <p>
+                    El sistema utiliza una tarjeta Arduino como unidad de
+                    control. Los sensores recopilan información del entorno
+                    y la tarjeta procesa esas señales para ejecutar acciones
+                    programadas, como encender una luz o responder ante
+                    un movimiento.
+                </p>
+
+                <p>
+                    La página web presenta el proyecto, explica sus
+                    componentes, documenta los avances y reúne archivos,
+                    fotografías y videos. Para controlar la casa directamente
+                    desde el navegador, también debe implementarse un sistema
+                    de comunicación entre la web y los componentes electrónicos.
+                </p>
+            </div>
+
+            <div class="intro-panel">
+                <h3>¿Qué se busca lograr?</h3>
+
+                <div class="feature-list">
+
+                    <div class="feature">
+                        <strong>Automatización</strong>
+                        <span>Realizar determinadas acciones a partir de señales de los sensores.</span>
+                    </div>
+
+                    <div class="feature">
+                        <strong>Monitoreo</strong>
+                        <span>Observar condiciones detectadas por los dispositivos electrónicos.</span>
+                    </div>
+
+                    <div class="feature">
+                        <strong>Control tecnológico</strong>
+                        <span>Comprender cómo se pueden controlar dispositivos mediante sistemas electrónicos y digitales.</span>
+                    </div>
+
+                    <div class="feature">
+                        <strong>Aprendizaje práctico</strong>
+                        <span>Aplicar conocimientos de programación, circuitos, robótica y diseño web.</span>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- OBJETIVOS -->
+<section id="objetivos">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Objetivos del <span>proyecto</span></h2>
+            <p>
+                Propósitos que orientan el diseño y la construcción
+                de la casa inteligente.
+            </p>
+            <div class="line"></div>
+        </div>
+
+        <div class="grid">
+
+            <article class="card">
+                <div class="number">01</div>
+                <h3>Objetivo general</h3>
+                <p>
+                    Diseñar una maqueta de casa inteligente mediante Arduino,
+                    sensores y dispositivos electrónicos para la
+                    automatización básica del hogar.
+                </p>
+            </article>
+
+            <article class="card">
+                <div class="number">02</div>
+                <h3>Objetivo tecnológico</h3>
+                <p>
+                    Diseñar un sistema tecnológico mediante una tarjeta Arduino y componentes electrónicos para la automatización del hogar.
+                </p>
+            </article>
+
+            <article class="card">
+                <div class="number">03</div>
+                <h3>Objetivo educativo</h3>
+                <p>
+                    Diseñar actividades prácticas relacionadas con la robótica y el desarrollo web para el aprendizaje tecnológico.
+                </p>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ETAPAS -->
+<section id="etapas">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Etapas del <span>proyecto</span></h2>
+            <p>
+                El proyecto se organiza en etapas para avanzar desde la idea
+                inicial hasta las pruebas y la presentación final.
+            </p>
+            <div class="line"></div>
+        </div>
+
+        <div class="stages">
+
+            <article class="stage">
+                <div class="stage-number">01</div>
+                <div>
+                    <h3>Investigación y planificación</h3>
+                    <p>
+                        Se investiga qué es una casa inteligente, cómo funciona
+                        la domótica y qué tareas pueden automatizarse. Después
+                        se definen las funciones de la maqueta, los materiales
+                        necesarios y las responsabilidades de cada integrante.
+                    </p>
+                </div>
+            </article>
+
+            
+<article class="stage">
+    <div class="stage-number">02</div>
+    <div>
+        <h3>Diseño de la casa</h3>
+        <p>
+            Se diseña la estructura de la vivienda y se decide
+            dónde estarán las habitaciones, luces, sensores y
+            dispositivos de control. También se organiza el
+            espacio para instalar los componentes de forma
+            ordenada y segura.
+        </p>
+
+    </div>
+</article>
+
+
+            <article class="stage">
+                <div class="stage-number">03</div>
+                <div>
+                    <h3>Selección de componentes</h3>
+                    <p>
+                        Se identifican los materiales necesarios, como la
+                        tarjeta Arduino, cables, resistencias, LED, protoboards
+                        y sensores. Se estudia la función de cada elemento
+                        para elegir los componentes apropiados.
+                    </p>
+                </div>
+            </article>
+
+            <article class="stage">
+                <div class="stage-number">04</div>
+                <div>
+                    <h3>Montaje de los circuitos</h3>
+                    <p>
+                        Se conectan los componentes en las protoboards
+                        siguiendo un esquema eléctrico. Se revisan las
+                        conexiones antes de alimentar el circuito para
+                        evitar errores y proteger los dispositivos.
+                    </p>
+                </div>
+            </article>
+
+            <article class="stage">
+                <div class="stage-number">05</div>
+                <div>
+                    <h3>Programación de Arduino</h3>
+                    <p>
+                        Se escribe el código que permite a la tarjeta leer
+                        las señales de los sensores y controlar las salidas.
+                        Se programan condiciones para encender luces o
+                        responder al movimiento, y se corrigen los errores.
+                    </p>
+                </div>
+            </article>
+
+            <article class="stage">
+                <div class="stage-number">06</div>
+                <div>
+                    <h3>Integración de los sensores</h3>
+                    <p>
+                        Se incorporan los sensores seleccionados y se
+                        comprueba qué información proporciona cada uno.
+                        Por ejemplo, el sensor PIR detecta movimiento y
+                        un sensor de humedad mide la humedad según su tipo.
+                    </p>
+                </div>
+            </article>
+
+            <article class="stage">
+                <div class="stage-number">07</div>
+                <div>
+                    <h3>Desarrollo de la página web</h3>
+                    <p>
+                        Se construye una página para presentar el proyecto,
+                        explicar su funcionamiento, mostrar los componentes,
+                        documentar las etapas y reunir imágenes, videos
+                        y archivos PDF. La conexión con Arduino requiere
+                        implementar también la comunicación correspondiente.
+                    </p>
+                </div>
+            </article>
+
+            <article class="stage">
+                <div class="stage-number">08</div>
+                <div>
+                    <h3>Pruebas de funcionamiento</h3>
+                    <p>
+                        Se prueba cada componente por separado y después
+                        se verifica el sistema completo. Se comprueba la
+                        respuesta de los sensores, el funcionamiento de
+                        los LED y la estabilidad de los circuitos.
+                    </p>
+                </div>
+            </article>
+
+            <article class="stage">
+                <div class="stage-number">09</div>
+                <div>
+                    <h3>Construcción y acabado</h3>
+                    <p>
+                        Se prepara la estructura física de la vivienda y
+                        se distribuyen los componentes en sus lugares.
+                        Se organiza el cableado y se identifican las
+                        partes principales para facilitar la demostración.
+                    </p>
+                </div>
+            </article>
+
+            <article class="stage">
+                <div class="stage-number">10</div>
+                <div>
+                    <h3>Documentación y presentación</h3>
+                    <p>
+                        Se recopilan fotografías, explicaciones, esquemas,
+                        código y resultados de las pruebas. Se organizan
+                        los documentos y se prepara una presentación para
+                        explicar los objetivos, materiales y resultados.
+                    </p>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- COMPONENTES -->
+<section id="componentes">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Componentes del <span>sistema</span></h2>
+            <p>
+                Materiales electrónicos que pueden utilizarse en la
+                construcción y programación de la casa inteligente.
+            </p>
+            <div class="line"></div>
+        </div>
+
+        <div class="grid">
+
+            <article class="card component-card">
+                <h3>Tarjeta Arduino</h3>
+                <p>
+                    Es la unidad de control del circuito. Ejecuta el programa,
+                    recibe las señales de los sensores y controla las salidas.
+                </p>
+            </article>
+
+            <article class="card component-card">
+                <h3>Cables de conexión</h3>
+                <p>
+                    Permiten unir los componentes electrónicos con Arduino
+                    y las protoboards para formar los circuitos.
+                </p>
+            </article>
+
+            <article class="card component-card">
+                <h3>Cable para Arduino</h3>
+                <p>
+                    Se utiliza para conectar la tarjeta a una computadora
+                    compatible y cargar el programa.
+                </p>
+            </article>
+
+            <article class="card component-card">
+                <h3>LED</h3>
+                <p>
+                    Son luces electrónicas que pueden representar la
+                    iluminación de una vivienda o indicar funciones activas.
+                </p>
+            </article>
+
+            <article class="card component-card">
+                <h3>Resistencias</h3>
+                <p>
+                    Ayudan a limitar la corriente y proteger componentes
+                    como los LED cuando se elige el valor adecuado.
+                </p>
+            </article>
+
+            <article class="card component-card">
+                <h3>Dos protoboards mini</h3>
+                <p>
+                    Permiten montar y probar circuitos sin soldar los
+                    componentes, facilitando las modificaciones.
+                </p>
+            </article>
+
+            <article class="card component-card">
+                <h3>Sensor analógico</h3>
+                <p>
+                    Puede entregar una señal variable que Arduino interpreta
+                    para medir una condición, según el sensor utilizado.
+                </p>
+            </article>
+
+            <article class="card component-card">
+                <h3>Sensor PIR</h3>
+                <p>
+                    Detecta cambios en la radiación infrarroja asociados
+                    con el movimiento dentro de su campo de detección.
+                </p>
+            </article>
+
+            <article class="card component-card">
+                <h3>Sensor de infrarrojos</h3>
+                <p>
+                    Puede utilizarse para detectar objetos cercanos o
+                    cambios en la señal infrarroja, según el modelo.
+                </p>
+            </article>
+
+            <article class="card component-card">
+                <h3>Sensor de humedad</h3>
+                <p>
+                    Permite medir la humedad del suelo o del ambiente,
+                    dependiendo del tipo de sensor.
+                </p>
+            </article>
+
+            <article class="card component-card">
+                <h3>Pantalla I2C</h3>
+                <p>
+                    es un módulo que permite conectar una pantalla LCD a Arduino utilizando solo dos cables de comunicación: SDA y SCL. Facilita mostrar textos y datos con menos conexiones.
+                </p>
+            </article>
+
+            <article class="card component-card">
+                <h3>Fuente de alimentación</h3>
+                <p>
+                    Proporciona la energía necesaria para el circuito.
+                    El voltaje y la corriente deben ser adecuados.
+                </p>
+            </article>
+
+            <article class="card component-card">
+                <h3>Estructura de la maqueta</h3>
+                <p>
+                    Es la parte física de la casa y sirve para ubicar
+                    los componentes y representar una vivienda inteligente.
+                </p>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+
+
+<style>
+/* RECURSOS DEL PROYECTO */
+
+#laboratorio .lab-panel {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+#laboratorio .lab-panel > div {
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(66, 245, 255, 0.25);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+}
+
+#laboratorio .lab-panel h3 {
+    margin-bottom: 12px;
+    color: var(--cyan);
+}
+
+#laboratorio .lab-panel p {
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+#laboratorio .github-link {
+    display: inline-block;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    margin-top: auto;
+}
+
+/* ADAPTACIÓN PARA CELULARES */
+@media (max-width: 650px) {
+    #laboratorio .lab-panel {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<!-- RECURSOS DEL PROYECTO -->
+<section id="laboratorio">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Recursos del <span>proyecto</span></h2>
+            <p>
+                Consulta el código fuente, las presentaciones y la
+                simulación del proyecto NEXUS.
+            </p>
+            <div class="line"></div>
+        </div>
+
+        <div class="lab-panel">
+
+            <!-- 1. GITHUB -->
+            <div>
+                <h3>01. Repositorio de GitHub</h3>
+                <p>
+                
+                </p>
+                <a
+                    class="github-link"
+                    href="https://github.com/keyly1medrano-prog/Casa-inteligente-"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Ver repositorio de GitHub →
+                </a>
+            </div>
+
+            <!-- 2. CANVA: PRESENTACIÓN DEL PROYECTO -->
+            <div>
+                <h3>02. Presentación del proyecto</h3>
+                <p>
+                    
+                </p>
+                <a
+                    class="github-link"
+                    href="https://canva.link/zyzucux57vqsazz"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Ver presentación en Canva →
+                </a>
+            </div>
+
+            <!-- 3. CANVA: EXPLICACIÓN DE LA PÁGINA WEB -->
+            <div>
+                <h3>03. Explicación de la página web</h3>
+                <p>
+                    
+                </p>
+                <a
+                    class="github-link"
+                    href="https://canva.link/je4qggyyl07fckw"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Ver explicación de la página web →
+                </a>
+            </div>
+
+            <!-- 4. TINKERCAD -->
+            <div>
+                <h3>04. Simulación en Tinkercad</h3>
+                <p>
+                    
+                </p>
+                <a
+                    class="github-link"
+                    href="https://www.tinkercad.com/things/9wTcY0F7Lza-mighty-turing-kasi/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Ver proyecto en Tinkercad →
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<!-- =========================
+     GALERÍA DEL PROYECTO NEXUS
+========================= -->
+
+<style>
+/* GALERÍA DEL PROYECTO */
+
+#galeria {
+    padding: 70px 20px;
+    background: #070b1d;
+    color: #ffffff;
+}
+
+#galeria .container {
+    width: 100%;
+    max-width: 1150px;
+    margin: auto;
+}
+
+#galeria .section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#galeria .section-title h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+#galeria .section-title h2 span {
+    color: #42f5ff;
+    text-shadow: 0 0 15px #42f5ff;
+}
+
+#galeria .section-title p {
+    color: #aab8d8;
+    line-height: 1.8;
+}
+
+#galeria .line {
+    width: 80px;
+    height: 4px;
+    margin: 20px auto 0;
+    background: linear-gradient(90deg, #42f5ff, #a278ff);
+    border-radius: 10px;
+}
+
+/* CUADRÍCULA DE FOTOS */
+
+#galeria .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+}
+
+#galeria .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid rgba(66, 245, 255, 0.25);
+    background: #111b38;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(66, 245, 255, 0.05);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#galeria .gallery-item:hover {
+    border-color: #42f5ff;
+    box-shadow: 0 0 22px rgba(66, 245, 255, 0.2);
+}
+
+#galeria .gallery-item img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s, filter 0.35s;
+}
+
+#galeria .gallery-item:hover img {
+    transform: scale(1.06);
+    filter: brightness(1.15);
+}
+
+/* VENTANA EMERGENTE */
+
+.image-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(3, 6, 20, 0.94);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 60px 20px 25px;
+}
+
+.image-popup.active {
+    display: flex;
+}
+
+.image-popup img {
+    max-width: 90%;
+    max-height: 78vh;
+    object-fit: contain;
+    border: 1px solid #42f5ff;
+    border-radius: 10px;
+    box-shadow: 0 0 35px rgba(66, 245, 255, 0.2);
+    animation: aparecerImagen 0.25s ease;
+}
+
+#popupCaption {
+    color: #42f5ff;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.popup-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid #42f5ff;
+    background: #111b38;
+    color: #42f5ff;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.popup-close:hover {
+    background: #42f5ff;
+    color: #070b1d;
+}
+
+@keyframes aparecerImagen {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ADAPTACIÓN A CELULARES */
+
+@media (max-width: 600px) {
+    #galeria {
+        padding: 50px 15px;
+    }
+
+    #galeria .gallery {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    #galeria .gallery-item img {
+        height: 230px;
+    }
+
+    .image-popup img {
+        max-width: 100%;
+        max-height: 72vh;
+    }
+
+    .popup-close {
+        right: 18px;
+        top: 15px;
+    }
+}
+</style>
+
+<!-- SECCIÓN GALERÍA -->
+
+<section id="galeria">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Galería del <span>proyecto</span></h2>
+
+            <p>
+                Espacio para mostrar el diseño, los materiales, los circuitos
+                y los avances de construcción de la casa inteligente.
+            </p>
+
+            <div class="line"></div>
+        </div>
+
+        <div class="gallery">
+
+            <!-- IMAGEN 1 -->
+            <div class="gallery-item">
+                <img
+                    src="image/imagen01.jpeg"
+                    alt="Diseño de la casa inteligente"
+                    loading="lazy">
+            </div>
+
+            <!-- IMAGEN 2 -->
+            <div class="gallery-item">
+                <img
+                    src="image/imagen02.jpeg"
+                    alt="Conexiones de los sensores y componentes"
+                    loading="lazy">
+            </div>
+
+            <!-- IMAGEN 3 -->
+            <div class="gallery-item">
+                <img
+                    src="image/imagen03.jpeg"
+                    alt="Materiales utilizados en el proyecto"
+                    loading="lazy">
+            </div>
+
+            <!-- IMAGEN 4 -->
+            <div class="gallery-item">
+                <img
+                    src="image/imagen0.4.jpeg"
+                    alt="Componentes y materiales de la casa"
+                    loading="lazy">
+            </div>
+
+            <!-- IMAGEN 5 -->
+            <div class="gallery-item">
+                <img
+                    src="image/imagen0.5.jpeg"
+                    alt="Pantalla i2c"
+                    loading="lazy">
+            </div>
+
+            <!-- IMAGEN 6 -->
+            <div class="gallery-item">
+                <img
+                    src="image/imagen0.6.jpeg"
+                    alt="Construcción de la maqueta de la casa inteligente"
+                    loading="lazy">
+            </div>
+
+            <!-- IMAGEN 7 -->
+            <div class="gallery-item">
+                <img
+                    src="image/imagen07.png"
+                    alt="Instalación del sistema electrónico"
+                    loading="lazy">
+            </div>
+
+            <!-- IMAGEN 8 -->
+            <div class="gallery-item">
+                <img
+                    src="image/imagen08.png"
+                    alt="Componentes y materiales utilizados"
+                    loading="lazy">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- VENTANA EMERGENTE PARA LAS FOTOS -->
+
+<div
+    class="image-popup"
+    id="imagePopup"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Vista ampliada de la fotografía"
+    aria-hidden="true">
+
+    <button
+        class="popup-close"
+        id="popupClose"
+        type="button"
+        aria-label="Cerrar imagen">
+        &times;
+    </button>
+
+    <img id="popupImage" src="" alt="">
+
+    <p id="popupCaption"></p>
+</div>
+
+<!-- JAVASCRIPT DE LA GALERÍA -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const galleryItems = document.querySelectorAll(
+        "#galeria .gallery-item img"
+    );
+
+    const popup = document.getElementById("imagePopup");
+    const popupImage = document.getElementById("popupImage");
+    const popupCaption = document.getElementById("popupCaption");
+    const closeButton = document.getElementById("popupClose");
+
+    // ABRIR LA FOTO AL HACER CLIC
+    galleryItems.forEach(function (image) {
+
+        image.parentElement.addEventListener("click", function () {
+
+            popupImage.src = image.src;
+            popupImage.alt = image.alt;
+            popupCaption.textContent = image.alt;
+
+            popup.classList.add("active");
+            popup.setAttribute("aria-hidden", "false");
+
+            document.body.style.overflow = "hidden";
+            closeButton.focus();
+        });
+
+    });
+
+    // CERRAR LA VENTANA
+    function cerrarPopup() {
+        popup.classList.remove("active");
+        popup.setAttribute("aria-hidden", "true");
+
+        popupImage.src = "";
+        document.body.style.overflow = "";
+    }
+
+    closeButton.addEventListener("click", cerrarPopup);
+
+    // CERRAR AL HACER CLIC FUERA DE LA FOTO
+    popup.addEventListener("click", function (event) {
+        if (event.target === popup) {
+            cerrarPopup();
+        }
+    });
+
+    // CERRAR CON LA TECLA ESCAPE
+    document.addEventListener("keydown", function (event) {
+        if (
+            event.key === "Escape" &&
+            popup.classList.contains("active")
+        ) {
+            cerrarPopup();
+        }
+    });
+
+});
+</script>
+
+<!-- VENTANA EMERGENTE DE LAS IMÁGENES -->
+
+<div class="image-popup" id="imagePopup"
+     role="dialog"
+     aria-modal="true"
+     aria-label="Imagen ampliada">
+
+    <button class="popup-close" id="popupClose"
+            aria-label="Cerrar imagen">&times;</button>
+
+    <img id="popupImage" src="" alt="">
+
+    <p id="popupCaption"></p>
+
+</div>
+
+<script>
+const popup = document.getElementById("imagePopup");
+const popupImage = document.getElementById("popupImage");
+const popupCaption = document.getElementById("popupCaption");
+const popupClose = document.getElementById("popupClose");
+
+/* ABRIR IMAGEN AL HACER CLIC */
+
+document.querySelectorAll("#galeria .gallery-item img")
+.forEach(function(imagen) {
+
+    imagen.addEventListener("click", function() {
+
+        popupImage.src = imagen.src;
+        popupImage.alt = imagen.alt;
+        popupCaption.textContent = imagen.alt;
+
+        popup.classList.add("active");
+        document.body.style.overflow = "hidden";
+
+        popupClose.focus();
+    });
+
+});
+
+/* CERRAR VENTANA */
+
+function cerrarPopup() {
+    popup.classList.remove("active");
+    popupImage.src = "";
+    document.body.style.overflow = "";
+}
+
+popupClose.addEventListener("click", cerrarPopup);
+
+/* CERRAR AL TOCAR FUERA DE LA IMAGEN */
+
+popup.addEventListener("click", function(evento) {
+    if (evento.target === popup) {
+        cerrarPopup();
+    }
+});
+
+/* CERRAR CON LA TECLA ESC */
+
+document.addEventListener("keydown", function(evento) {
+    if (
+        evento.key === "Escape" &&
+        popup.classList.contains("active")
+    ) {
+        cerrarPopup();
+    }
+});
+</script>
+
+
+<!-- ==================================================
+     1. DOCUMENTACIÓN PDF
+================================================== -->
+
+<section id="documentos">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Documentación <span>PDF</span></h2>
+            <p>
+                Consulta los documentos relacionados con la investigación,
+                el diseño, la construcción y el funcionamiento del proyecto.
+            </p>
+            <div class="line"></div>
+        </div>
+
+        <div class="pdf-grid">
+
+            <article class="pdf-card">
+                <div class="pdf-icon">PDF</div>
+                <h3>Documento 1</h3>
+                <p>Descripción general del proyecto.</p>
+                <a class="pdf-link" href="documents/F1_InformeTeorico_Proyectorobotcontroladoconappmovil_03julio2026.pdf"
+                   data-title="Documento 1">Abrir documento</a>
+            </article>
+
+            <article class="pdf-card">
+                <div class="pdf-icon">PDF</div>
+                <h3>Documento 2</h3>
+                <p>Lista de materiales y componentes.</p>
+                <a class="pdf-link" href="documents/F2_ RequerimientoEquipo_robot_controlado_con_app_28Agosto2026.pdf"
+                   data-title="Documento 2">Abrir documento</a>
+            </article>
+
+            <article class="pdf-card">
+                <div class="pdf-icon">PDF</div>
+                <h3>Documento 3</h3>
+                <p>Conexiones y circuitos electrónicos.</p>
+                <a class="pdf-link" href="documents/F3_Implementacion_casa_controlada_por_una_app_o_una_red_18sep2026.pdf"
+                   data-title="Documento 3">Abrir documento</a>
+            </article>
+
+            <article class="pdf-card">
+                <div class="pdf-icon">PDF</div>
+                <h3>Documento 4</h3>
+                <p>Programación y funcionamiento.</p>
+                <a class="pdf-link" href="documents/F4_Entregables _casa inteligente_13octu026.pdf"
+                   data-title="Documento 4">Abrir documento</a>
+            </article>
+
+            <article class="pdf-card">
+                <div class="pdf-icon">PDF</div>
+                <h3>Documento 5</h3>
+                <p>Manual y resultados de las pruebas.</p>
+                <a class="pdf-link" href="documents/ExpoFeria2026.pdf"
+                   data-title="Documento 5">Abrir documento</a>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- VENTANA EMERGENTE PDF -->
+
+<div id="pdfModal" class="nexus-pdf-modal" aria-hidden="true">
+    <div class="nexus-pdf-window">
+
+        <div class="nexus-pdf-header">
+            <h3 id="modalTitle">Documento PDF</h3>
+
+            <button type="button" id="closeModal"
+                    class="nexus-pdf-close"
+                    aria-label="Cerrar PDF">&times;</button>
+        </div>
+
+        <iframe id="pdfViewer"
+                title="Visor de documentos PDF"
+                src="about:blank"></iframe>
+
+        <div id="pdfError" class="nexus-pdf-error" hidden>
+            No se pudo mostrar el PDF. Comprueba que el archivo exista
+            en la carpeta documents.
+            <br>
+            <a id="pdfOpenNewTab" href="#" target="_blank"
+               rel="noopener noreferrer">Abrir PDF en otra pestaña</a>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- =========================
+     VIDEOS DEL PROYECTO NEXUS
+========================= -->
+
+<section id="videos" class="nexus-videos">
+
+    <div class="container">
+
+        <!-- TÍTULO -->
+        <div class="section-title">
+            <h2>Videos del <span>proyecto</span></h2>
+
+            <p>
+                Conoce más sobre robótica, Arduino y casas inteligentes.
+            </p>
+
+            <div class="line"></div>
+        </div>
+
+        <!-- CASILLAS DE VIDEOS -->
+        <div class="videos-grid">
+
+            <!-- =========================
+                 VIDEO 1
+            ========================= -->
+
+            <a class="video-card nexus-video-card"
+               href="https://youtu.be/3CjfAjQ0_fo?si=7prC_CR0DeJIIVBp"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Ver video Casa inteligente en YouTube">
+
+                <div class="video-card-top">
+                    <span class="video-number">VIDEO 01</span>
+                    <span class="video-status">
+                        <span class="status-dot"></span>
+                        PROYECTO
+                    </span>
+                </div>
+
+                <div class="video-icon">⌂</div>
+
+                <span class="video-category">
+                    SISTEMA INTELIGENTE
+                </span>
+
+                <h3>Casa inteligente</h3>
+
+                <p>
+                    Presentación general de nuestro circuito de la casa inteligente.
+                </p>
+
+                <span class="video-button">
+                    <span>▶</span>
+                    VER EN YOUTUBE
+                    <span class="video-arrow">↗</span>
+                </span>
+
+                <div class="card-decoration"></div>
+
+            </a>
+
+
+            <!-- =========================
+                 VIDEO 2
+            ========================= -->
+
+            <a class="video-card nexus-video-card"
+               href="https://youtu.be/WeaZrfs0clc?si=QvRrg9fQOp4UrcAt"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Ver explicación de la casa inteligente en YouTube">
+
+                <div class="video-card-top">
+                    <span class="video-number">VIDEO 02</span>
+                    <span class="video-status">
+                        <span class="status-dot"></span>
+                        AUTOMATIZACIÓN
+                    </span>
+                </div>
+
+                <div class="video-icon">⚙</div>
+
+                <span class="video-category">
+                    FUNCIONAMIENTO
+                </span>
+
+                <h3>Explicación de la casa inteligente</h3>
+
+                <p>
+                    Conoce los componentes electrónicos y el funcionamiento
+                    de nuestro sistema automatizado.
+                </p>
+
+                <span class="video-button">
+                    <span>▶</span>
+                    VER EN YOUTUBE
+                    <span class="video-arrow">↗</span>
+                </span>
+
+                <div class="card-decoration"></div>
+
+            </a>
+
+
+            <!-- =========================
+                 VIDEO 3
+            ========================= -->
+
+            <a class="video-card nexus-video-card"
+               href="https://youtu.be/WA9pASuuGGk?si=0NwPrvjeOLcQNpXV"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Ver explicación de la página web en YouTube">
+
+                <div class="video-card-top">
+                    <span class="video-number">VIDEO 03</span>
+                    <span class="video-status">
+                        <span class="status-dot"></span>
+                        DESARROLLO WEB
+                    </span>
+                </div>
+
+                <div class="video-icon">⌘</div>
+
+                <span class="video-category">
+                    DISEÑO DIGITAL
+                </span>
+
+                <h3>Explicación de la página web</h3>
+
+                <p>
+                    Descubre el diseño, la estructura y el funcionamiento
+                    de la página web del proyecto.
+                </p>
+
+                <span class="video-button">
+                    <span>▶</span>
+                    VER EN YOUTUBE
+                    <span class="video-arrow">↗</span>
+                </span>
+
+                <div class="card-decoration"></div>
+
+            </a>
+
+        </div>
+
+        <!-- PIE DE SECCIÓN -->
+        <div class="videos-footer">
+            <span class="footer-line"></span>
+
+            <p>
+                NEXUS <span>|</span>
+                TECNOLOGÍA QUE TRANSFORMA EL HOGAR
+            </p>
+
+            <span class="footer-line"></span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ESTILOS FUTURISTAS
+========================= -->
+
+<style>
+
+/* SECCIÓN PRINCIPAL */
+
+#videos.nexus-videos {
+    position: relative;
+    padding: 75px 0;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            ellipse at 10% 10%,
+            rgba(66, 245, 255, 0.07),
+            transparent 40%
+        ),
+        radial-gradient(
+            ellipse at 90% 90%,
+            rgba(162, 120, 255, 0.08),
+            transparent 40%
+        );
+}
+
+/* ENCABEZADO */
+
+#videos .section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#videos .section-title h2 {
+    color: #f4f8ff;
+}
+
+#videos .section-title h2 span {
+    color: #42f5ff;
+    text-shadow: 0 0 15px rgba(66, 245, 255, 0.4);
+}
+
+#videos .section-title p {
+    color: #aab9d4;
+    line-height: 1.8;
+}
+
+/* CUADRÍCULA */
+
+#videos .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+}
+
+/* TARJETAS CLICABLES */
+
+#videos a.nexus-video-card {
+    position: relative;
+    isolation: isolate;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    min-width: 0;
+    padding: 25px;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    background: linear-gradient(
+        145deg,
+        rgba(16, 26, 53, 0.98),
+        rgba(7, 13, 33, 0.98)
+    );
+
+    border: 1px solid rgba(66, 245, 255, 0.3);
+    border-radius: 16px;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    box-shadow: inset 0 0 20px rgba(66, 245, 255, 0.025);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+/* EFECTO AL PASAR EL CURSOR */
+
+#videos a.nexus-video-card:hover {
+    transform: translateY(-7px);
+
+    border-color: #42f5ff;
+
+    background: linear-gradient(
+        145deg,
+        #142342,
+        #080e22
+    );
+
+    box-shadow:
+        0 0 22px rgba(66, 245, 255, 0.14),
+        inset 0 0 20px rgba(66, 245, 255, 0.04);
+}
+
+/* EFECTO DE ENFOQUE CON TECLADO */
+
+#videos a.nexus-video-card:focus-visible {
+    outline: 2px solid #ff4fd8;
+    outline-offset: 4px;
+}
+
+/* DECORACIÓN DE ESQUINA */
+
+#videos .card-decoration {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: 75px;
+    height: 75px;
+
+    z-index: -1;
+    pointer-events: none;
+
+    background: linear-gradient(
+        135deg,
+        transparent 48%,
+        rgba(66, 245, 255, 0.12) 49%,
+        rgba(66, 245, 255, 0.02) 100%
+    );
+}
+
+/* ENCABEZADO DE CADA TARJETA */
+
+#videos .video-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-bottom: 25px;
+}
+
+#videos .video-number {
+    display: inline-block;
+
+    padding: 7px 10px;
+
+    border: 1px solid rgba(66, 245, 255, 0.4);
+    border-radius: 5px;
+
+    color: #42f5ff;
+    background: rgba(66, 245, 255, 0.06);
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+#videos .video-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    color: #aab9d4;
+
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+#videos .status-dot {
+    width: 6px;
+    height: 6px;
+
+    flex-shrink: 0;
+    border-radius: 50%;
+
+    background: #42f5ff;
+    box-shadow: 0 0 8px #42f5ff;
+}
+
+/* ICONO */
+
+#videos .video-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 76px;
+    height: 76px;
+
+    margin: 0 auto 25px;
+
+    border: 1px solid rgba(66, 245, 255, 0.55);
+    border-radius: 18px;
+
+    color: #42f5ff;
+
+    background: linear-gradient(
+        145deg,
+        rgba(66, 245, 255, 0.12),
+        rgba(162, 120, 255, 0.1)
+    );
+
+    box-shadow:
+        0 0 22px rgba(66, 245, 255, 0.08),
+        inset 0 0 15px rgba(66, 245, 255, 0.06);
+
+    font-size: 40px;
+
+    transition:
+        color 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+#videos a.nexus-video-card:hover .video-icon {
+    border-color: #ff4fd8;
+    color: #ff4fd8;
+
+    box-shadow: 0 0 22px rgba(255, 79, 216, 0.16);
+
+    transform: scale(1.05);
+}
+
+/* CATEGORÍA */
+
+#videos .video-category {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #a278ff;
+
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.4px;
+}
+
+/* TÍTULOS */
+
+#videos a.nexus-video-card h3 {
+    margin: 0 0 12px;
+
+    color: #f4f8ff;
+
+    font-size: 19px;
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+/* DESCRIPCIÓN */
+
+#videos a.nexus-video-card p {
+    margin: 0 0 25px;
+
+    color: #aab9d4;
+
+    font-size: 14px;
+    line-height: 1.8;
+
+    flex: 1;
+}
+
+/* BOTÓN VISUAL */
+
+#videos .video-button {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    margin-top: auto;
+    padding: 14px 12px;
+
+    border: 1px solid #42f5ff;
+    border-radius: 8px;
+
+    color: #42f5ff;
+    background: rgba(66, 245, 255, 0.05);
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-align: center;
+
+    transition:
+        color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+#videos a.nexus-video-card:hover .video-button {
+    color: #070b1d;
+    background: #42f5ff;
+
+    box-shadow: 0 0 20px rgba(66, 245, 255, 0.3);
+}
+
+#videos .video-arrow {
+    position: absolute;
+    right: 12px;
+
+    font-size: 17px;
+}
+
+/* PIE */
+
+#videos .videos-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+
+    margin-top: 40px;
+}
+
+#videos .videos-footer p {
+    color: #aab9d4;
+
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+#videos .videos-footer p span {
+    color: #42f5ff;
+}
+
+#videos .footer-line {
+    width: 55px;
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #42f5ff
+    );
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+    #videos .videos-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* TELÉFONOS */
+
+@media (max-width: 600px) {
+    #videos.nexus-videos {
+        padding: 50px 0;
+    }
+
+    #videos .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    #videos a.nexus-video-card {
+        padding: 21px;
+    }
+
+    #videos .videos-footer {
+        gap: 8px;
+    }
+
+    #videos .videos-footer p {
+        font-size: 8px;
+        line-height: 1.8;
+    }
+}
+
+</style>
+
+<!-- ==================================================
+     3. REDES SOCIALES Y CONTACTO
+================================================== -->
+
+<section id="contacto" class="nexus-contact">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Redes sociales y <span>contacto</span></h2>
+            <p>
+                Conoce más sobre NEXUS | Casa Inteligente
+                y nuestro proyecto tecnológico.
+            </p>
+            <div class="line"></div>
+        </div>
+
+        <div class="nexus-social-grid">
+
+            <a class="nexus-social-card"
+               href="https://github.com/keyly1medrano-prog/Casa-inteligente-"
+               target="_blank" rel="noopener noreferrer">
+                <span class="nexus-social-icon">GH</span>
+                <span class="nexus-social-text">
+                    <strong>GitHub</strong>
+                    <small>Casa Inteligente | NEXUS</small>
+                </span>
+                <span class="nexus-social-arrow">↗</span>
+            </a>
+
+            <a class="nexus-social-card"
+               href="https://www.instagram.com/"
+               target="_blank" rel="noopener noreferrer">
+                <span class="nexus-social-icon">IG</span>
+                <span class="nexus-social-text">
+                    <strong>Instagram</strong>
+                    <small>Casa Inteligente | NEXUS</small>
+                </span>
+                <span class="nexus-social-arrow">↗</span>
+            </a>
+
+            <a class="nexus-social-card"
+               href="https://www.facebook.com/"
+               target="_blank" rel="noopener noreferrer">
+                <span class="nexus-social-icon">f</span>
+                <span class="nexus-social-text">
+                    <strong>Facebook</strong>
+                    <small>Casa Inteligente | NEXUS</small>
+                </span>
+                <span class="nexus-social-arrow">↗</span>
+            </a>
+
+            <a class="nexus-social-card"
+               href="https://www.tiktok.com/"
+               target="_blank" rel="noopener noreferrer">
+                <span class="nexus-social-icon">♪</span>
+                <span class="nexus-social-text">
+                    <strong>TikTok</strong>
+                    <small>Casa Inteligente | NEXUS</small>
+                </span>
+                <span class="nexus-social-arrow">↗</span>
+            </a>
+
+            <a class="nexus-social-card"
+               href="https://www.youtube.com/"
+               target="_blank" rel="noopener noreferrer">
+                <span class="nexus-social-icon">▶</span>
+                <span class="nexus-social-text">
+                    <strong>YouTube</strong>
+                    <small>Videos del proyecto NEXUS</small>
+                </span>
+                <span class="nexus-social-arrow">↗</span>
+            </a>
+
+        </div>
+
+        <div class="nexus-contact-grid">
+
+            <article class="nexus-contact-card">
+                <h3>Teléfono / WhatsApp</h3>
+                <p>Casa Inteligente | NEXUS</p>
+                <p>5467-3246</p>
+            </article>
+
+            <article class="nexus-contact-card">
+                <h3>Correo electrónico</h3>
+                <p>Contacto de Casa Inteligente | NEXUS</p>
+                <p>CasaInteligente@gmail.com</p>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ==================================================
+     ESTILOS FUTURISTAS Y POPUPS
+================================================== -->
+
+<style>
+/* PDF */
+.nexus-pdf-modal,
+.youtube-popup-nexus {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    box-sizing: border-box;
+    background: rgba(2,5,18,.94);
+    backdrop-filter: blur(9px);
+}
+
+.nexus-pdf-modal.active,
+.youtube-popup-nexus.activo {
+    display: flex;
+}
+
+.nexus-pdf-window,
+.youtube-window-nexus {
+    width: min(1100px, 100%);
+    height: 88vh;
+    height: 88dvh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #42f5ff;
+    border-radius: 15px;
+    background: #101a35;
+    box-shadow: 0 0 30px rgba(66,245,255,.18);
+}
+
+.nexus-pdf-header,
+.youtube-header-nexus {
+    min-height: 66px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    box-sizing: border-box;
+    background: #101a35;
+    border-bottom: 1px solid rgba(66,245,255,.3);
+}
+
+.nexus-pdf-header h3,
+.youtube-header-nexus h3 {
+    color: #42f5ff;
+    font-size: 17px;
+    margin: 0;
+}
+
+#pdfViewer {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    border: 0;
+    background: #fff;
+}
+
+.nexus-pdf-error {
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+}
+
+.nexus-pdf-error a {
+    color: #42f5ff;
+}
+
+/* X ROSADA PDF Y YOUTUBE */
+#closeModal,
+#youtubePopupNexus .youtube-close-nexus {
+    appearance: none;
+    box-sizing: border-box;
+    width: 43px;
+    height: 43px;
+    min-width: 43px;
+    flex: 0 0 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    border: 2px solid #ff4fd8;
+    border-radius: 9px;
+    background: #101a35;
+    color: #ff4fd8;
+    font: 400 32px/1 Arial, sans-serif;
+    cursor: pointer;
+    transition: .25s;
+}
+
+#closeModal:hover,
+#youtubePopupNexus .youtube-close-nexus:hover {
+    background: #ff4fd8;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255,79,216,.45);
+}
+
+/* VIDEOS */
+#videos.nexus-videos {
+    padding: 70px 0;
+    background: radial-gradient(ellipse at top,rgba(66,245,255,.06),transparent 60%);
+}
+
+#videos .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 22px;
+}
+
+#videos .nexus-video-card {
+    display: flex;
+    flex-direction: column;
+    padding: 23px;
+    min-width: 0;
+    border: 1px solid rgba(66,245,255,.3);
+    border-radius: 15px;
+    background: linear-gradient(145deg,#101a35,#080e22);
+    box-shadow: inset 0 0 20px rgba(66,245,255,.025);
+    transition: .3s;
+}
+
+#videos .nexus-video-card:hover {
+    transform: translateY(-6px);
+    border-color: #42f5ff;
+    box-shadow: 0 0 22px rgba(66,245,255,.12);
+}
+
+#videos .video-card-top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-bottom: 23px;
+}
+
+#videos .video-number {
+    color: #42f5ff;
+    font-size: 11px;
+    letter-spacing: 1.3px;
+}
+
+#videos .video-status {
+    color: #a278ff;
+    font-size: 10px;
+}
+
+#videos .video-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 22px;
+    border: 1px solid #42f5ff;
+    border-radius: 17px;
+    color: #42f5ff;
+    background: rgba(66,245,255,.07);
+    font-size: 38px;
+}
+
+#videos .nexus-video-card h3 {
+    color: #f4f8ff;
+    font-size: 19px;
+    line-height: 1.5;
+}
+
+#videos .nexus-video-card p {
+    color: #aab9d4;
+    font-size: 14px;
+    line-height: 1.7;
+    flex: 1;
+}
+
+#videos .video-button {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #42f5ff;
+    border-radius: 8px;
+    background: rgba(66,245,255,.05);
+    color: #42f5ff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .25s;
+}
+
+#videos .video-button:hover {
+    background: #42f5ff;
+    color: #070b1d;
+    box-shadow: 0 0 15px rgba(66,245,255,.25);
+}
+
+.youtube-window-nexus {
+    height: auto;
+}
+
+.youtube-screen-nexus {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+}
+
+.youtube-screen-nexus iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+}
+
+.youtube-bottom-nexus {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 18px;
+    color: #aab9d4;
+    background: #101a35;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.youtube-bottom-nexus span {
+    color: #42f5ff;
+}
+
+#videos .videos-footer {
+    margin-top: 35px;
+    text-align: center;
+    color: #aab9d4;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+#videos .videos-footer span {
+    color: #42f5ff;
+}
+
+/* REDES SOCIALES */
+#contacto.nexus-contact {
+    padding: 70px 0;
+}
+
+.nexus-social-grid,
+.nexus-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 16px;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+.nexus-social-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+    padding: 17px;
+    border: 1px solid rgba(66,245,255,.28);
+    border-radius: 12px;
+    background: linear-gradient(145deg,#101a35,#080e22);
+    color: #fff;
+    text-decoration: none;
+    transition: .25s;
+}
+
+.nexus-social-card:hover {
+    transform: translateY(-4px);
+    border-color: #42f5ff;
+    box-shadow: 0 0 17px rgba(66,245,255,.1);
+}
+
+.nexus-social-icon {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(66,245,255,.1);
+    color: #42f5ff;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.nexus-social-text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+    min-width: 0;
+}
+
+.nexus-social-text strong {
+    color: #42f5ff;
+}
+
+.nexus-social-text small {
+    color: #aab9d4;
+    overflow-wrap: anywhere;
+}
+
+.nexus-social-arrow {
+    color: #ff4fd8;
+    font-size: 20px;
+}
+
+.nexus-contact-card {
+    padding: 22px;
+    border: 1px solid rgba(66,245,255,.25);
+    border-radius: 13px;
+    background: #101a35;
+    color: #aab9d4;
+}
+
+.nexus-contact-card h3 {
+    color: #42f5ff;
+}
+
+@media(max-width:850px) {
+    #videos .videos-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+}
+
+@media(max-width:580px) {
+    #videos .videos-grid,
+    .nexus-social-grid,
+    .nexus-contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nexus-pdf-modal,
+    .youtube-popup-nexus {
+        padding: 7px;
+    }
+
+    .nexus-pdf-window {
+        height: 94vh;
+        height: 94dvh;
+    }
+}
+</style>
+
+
+<!-- ==================================================
+     FUNCIONES JAVASCRIPT
+================================================== -->
+
+<script>
+(function () {
+
+    /* VISOR PDF */
+    const modal = document.getElementById("pdfModal");
+    const viewer = document.getElementById("pdfViewer");
+    const modalTitle = document.getElementById("modalTitle");
+    const closePDF = document.getElementById("closeModal");
+    const pdfError = document.getElementById("pdfError");
+    const pdfOpenNewTab = document.getElementById("pdfOpenNewTab");
+
+    if (modal && viewer && modalTitle && closePDF) {
+        let pdfTimer;
+
+        function cerrarPDF() {
+            clearTimeout(pdfTimer);
+            modal.classList.remove("active");
+            modal.setAttribute("aria-hidden","true");
+            viewer.src = "about:blank";
+            if (pdfError) pdfError.hidden = true;
+            document.body.style.overflow = "";
+        }
+
+        document.querySelectorAll("#documentos .pdf-link").forEach(function(link) {
+            link.addEventListener("click",function(event) {
+                event.preventDefault();
+
+                const url = new URL(link.getAttribute("href"),document.baseURI);
+
+                modalTitle.textContent = link.dataset.title || "Documento PDF";
+                if (pdfError) pdfError.hidden = true;
+                if (pdfOpenNewTab) pdfOpenNewTab.href = url.href;
+
+                modal.classList.add("active");
+                modal.setAttribute("aria-hidden","false");
+                document.body.style.overflow = "hidden";
+
+                viewer.src = url.href;
+
+                clearTimeout(pdfTimer);
+                pdfTimer = setTimeout(function() {
+                    if (modal.classList.contains("active") && pdfError) {
+                        pdfError.hidden = false;
+                    }
+                },7000);
+            });
+        });
+
+        closePDF.addEventListener("click",cerrarPDF);
+
+        modal.addEventListener("click",function(event) {
+            if (event.target === modal) cerrarPDF();
+        });
+
+        document.addEventListener("keydown",function(event) {
+            if (event.key === "Escape" && modal.classList.contains("active")) {
+                cerrarPDF();
+            }
+        });
+    }
+
+    /* VISOR YOUTUBE */
+    const youtubePopup = document.getElementById("youtubePopupNexus");
+    const youtubeFrame = document.getElementById("youtubeFrameNexus");
+    const youtubeTitle = document.getElementById("youtubeTitleNexus");
+
+    if (youtubePopup && youtubeFrame && youtubeTitle) {
+
+        window.abrirVideoNexus = function(id,nombre) {
+            youtubeTitle.textContent = nombre;
+            youtubeFrame.src =
+                "https://www.youtube-nocookie.com/embed/" +
+                encodeURIComponent(id) + "?autoplay=1&rel=0";
+
+            youtubePopup.classList.add("activo");
+            youtubePopup.setAttribute("aria-hidden","false");
+            document.body.style.overflow = "hidden";
+        };
+
+        window.cerrarVideoNexus = function() {
+            youtubePopup.classList.remove("activo");
+            youtubePopup.setAttribute("aria-hidden","true");
+            youtubeFrame.src = "about:blank";
+            document.body.style.overflow = "";
+        };
+
+        youtubePopup.addEventListener("click",function(event) {
+            if (event.target === youtubePopup) {
+                window.cerrarVideoNexus();
+            }
+        });
+
+        document.addEventListener("keydown",function(event) {
+            if (event.key === "Escape" && youtubePopup.classList.contains("activo")) {
+                window.cerrarVideoNexus();
+            }
+        });
+    }
+
+})();
+</script>
+
+
+    
+<!-- =========================
+     INTEGRANTES DEL PROYECTO
+========================= -->
+
+<section id="integrantes">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Equipo de <span>trabajo</span></h2>
+
+            <p>
+                Conoce las responsabilidades y aportes de cada integrante
+                en los trabajos F-1, F-2, F-3, F-4 y F-5 del proyecto
+                Casa Inteligente.
+            </p>
+
+            <div class="line"></div>
+        </div>
+
+        <div class="creators">
+
+            <!-- INTEGRANTE 1 -->
+            <div class="creator">
+                <strong>Angel Rodriguez</strong>
+
+                <p>
+                    Participó en la recopilación y aportación de información
+                    para el desarrollo de los trabajos F-1, F-2, F-3, F-4 y
+                    F-5. Asimismo, colaboró en el ensamblaje del circuito
+                    electrónico de la casa inteligente.
+                </p>
+            </div>
+
+            <!-- INTEGRANTE 2 -->
+            <div class="creator">
+                <strong>Yisela Escobar</strong>
+
+                <p>
+                    Contribuyó con información para la elaboración de los
+                    trabajos F-1, F-2, F-3, F-4 y F-5. Además, participó
+                    en el diseño y la construcción de la maqueta de la
+                    casa inteligente.
+                </p>
+            </div>
+
+            <!-- INTEGRANTE 3 -->
+            <div class="creator">
+                <strong>Reyna Monroy</strong>
+
+                <p>
+                    Colaboró en la recopilación de información y el
+                    desarrollo de los trabajos F-1, F-2, F-3, F-4 y F-5.
+                    También participó en la construcción y preparación
+                    de la maqueta utilizada para representar el
+                    funcionamiento del proyecto.
+                </p>
+            </div>
+
+            <!-- INTEGRANTE 4 -->
+            <div class="creator">
+                <strong>Keyly Medrano</strong>
+
+                <p>
+                    Contribuyó con la recopilación y elaboración de
+                    información para los trabajos F-1, F-2, F-3, F-4 y F-5.
+                    Asimismo, estuvo a cargo del diseño y desarrollo de la
+                    página web del proyecto, incluyendo la programación,
+                    organización y estructuración del código fuente.
+                    También colaboró en el ensamblaje del circuito
+                    electrónico y realizó presentaciones explicativas
+                    sobre el funcionamiento de la página web y el proyecto
+                    en general.
+                </p>
+            </div>
+
+            <!-- INTEGRANTE 5 -->
+            <div class="creator">
+                <strong>María Aguilar</strong>
+
+                <p>
+                    Se encargó de la elaboración de los trabajos F-1, F-2,
+                    F-3, F-4 y F-5. Asimismo, desarrolló el código del
+                    circuito electrónico en Tinkercad y realizó el diseño
+                    y la simulación del circuito en dicha plataforma.
+                    Además, colaboró en la grabación del video explicativo
+                    sobre el funcionamiento del circuito electrónico.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- =========================
+     ESTILOS CSS
+========================= -->
+
+<style>
+/* SECCIÓN DE INTEGRANTES */
+#integrantes {
+    padding: 80px 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* CONTENEDOR PRINCIPAL */
+#integrantes .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* TÍTULO DE LA SECCIÓN */
+#integrantes .section-title {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+#integrantes .section-title h2 {
+    font-size: clamp(28px, 4vw, 38px);
+    margin-bottom: 15px;
+}
+
+#integrantes .section-title h2 span {
+    color: #42f5ff;
+}
+
+#integrantes .section-title p {
+    max-width: 750px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-size: 16px;
+    text-align: center;
+}
+
+#integrantes .line {
+    width: 90px;
+    height: 4px;
+    margin: 22px auto 0;
+    border-radius: 10px;
+    background: linear-gradient(
+        90deg,
+        #42f5ff,
+        #a278ff,
+        #ff4fd8
+    );
+}
+
+/* CUADRÍCULA DE TARJETAS */
+.creators {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+    align-items: stretch;
+}
+
+/* TARJETAS */
+.creator {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 25px;
+    box-sizing: border-box;
+
+    background: rgba(16, 26, 53, 0.9);
+    border: 1px solid rgba(66, 245, 255, 0.25);
+    border-radius: 16px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* EFECTO AL PASAR EL CURSOR */
+.creator:hover {
+    transform: translateY(-5px);
+    border-color: #42f5ff;
+    box-shadow: 0 8px 25px rgba(66, 245, 255, 0.12);
+}
+
+/* NOMBRES */
+.creator strong {
+    display: block;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+
+    color: #42f5ff;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.5;
+    text-align: center;
+
+    border-bottom: 1px solid rgba(66, 245, 255, 0.25);
+}
+
+/* DESCRIPCIONES */
+.creator p {
+    margin: 0;
+    padding: 0;
+
+    color: #d5deef;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.8;
+
+    text-align: justify;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+}
+
+/* TABLET */
+@media (max-width: 900px) {
+    .creators {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .creator {
+        padding: 22px;
+    }
+}
+
+/* CELULARES */
+@media (max-width: 600px) {
+    #integrantes {
+        padding: 55px 15px;
+    }
+
+    .creators {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .creator {
+        padding: 22px;
+    }
+
+    .creator strong {
+        font-size: 19px;
+    }
+
+    .creator p {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    #integrantes .section-title p {
+        font-size: 14px;
+    }
+}
+</style>
+
+<!-- PIE DE PÁGINA -->
+<footer>
+    <div class="container">
+        <p><span>NEXUS</span> | Casa Inteligente</p>
+
+        <p>
+            Proyecto educativo de robótica, electrónica y desarrollo web.
+        </p>
+
+        <p>
+            Docente encargado: Lic. Carlos Galdámez
+        </p>
+    </div>
+</footer>
+
+<script>
+
+/* MENÚ PARA CELULARES */
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+    });
+});
+
+/* VISOR DE PDF */
+
+const pdfModal = document.getElementById("pdfModal");
+const pdfViewer = document.getElementById("pdfViewer");
+const modalTitle = document.getElementById("modalTitle");
+const closeModal = document.getElementById("closeModal");
+
+document.querySelectorAll(".pdf-link").forEach(link => {
+    link.addEventListener("click", event => {
+        const url = link.getAttribute("href");
+
+        if (!url || url === "#" || url.trim() === "") {
+            return;
+        }
+
+        event.preventDefault();
+
+        modalTitle.textContent =
+            link.closest(".pdf-card").querySelector("h3").textContent;
+
+        pdfViewer.src = url;
+        pdfModal.classList.add("active");
+        document.body.style.overflow = "hidden";
+    });
+});
+
+function cerrarPDF() {
+    pdfModal.classList.remove("active");
+    pdfViewer.src = "";
+    document.body.style.overflow = "";
+}
+
+closeModal.addEventListener("click", cerrarPDF);
+
+pdfModal.addEventListener("click", event => {
+    if (event.target === pdfModal) {
+        cerrarPDF();
+    }
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+        cerrarPDF();
+    }
+});
+</script>
+
+</body>
+</html>
