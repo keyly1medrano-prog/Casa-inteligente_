@@ -120,7 +120,7 @@ GitHub: facilita el almacenamiento y la organización del código fuente del pro
 Canva: permite elaborar materiales visuales y presentaciones.
 
 Link
-file:///C:/Users/Marely%20Medrano/Desktop/casa%20controlada%20por%20unaa%20red%20wed/index.html#laboratorio
+https://nexus-casa-inteligente.vercel.app/
 
 Conclusión
 El proyecto Casa inteligente controlada por una red web demuestra cómo la tecnología puede facilitar la automatización de diferentes funciones de una vivienda. Mediante Arduino, los sensores, las pantallas, la programación y el desarrollo web, se representa un sistema tecnológico que integra conocimientos de electrónica, robótica y diseño de páginas web. Además, el trabajo en equipo permite desarrollar habilidades de investigación, resolución de problemas y colaboración.
